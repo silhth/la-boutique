@@ -34,9 +34,6 @@ function createProduct(parent, imgUrl, productTitle, textPrice,idProduct) {
 }
 
 
-
-
-
 function createImg(parent, imgUrl, productTitle) {
   const image = document.createElement("img");
   image.src = imgUrl;
@@ -72,8 +69,8 @@ function setCartPtoductsNum () {
 
 function showModale (product) {
   modale.textContent = `Il prodotto "${product}" è stato aggiuto al carello`
-  modale.style.display = "flex"
-    setTimeout(() => {modale.style.display = "none";}, 1500);
+  modale.style.top = "40%"
+    setTimeout(() => {modale.style.top = "-250%";}, 1500);
 }
 // COSTANTI
 
