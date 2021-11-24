@@ -70,6 +70,15 @@ strong {
   margin-bottom: 0;
 }
 
+.cartBanner {
+  display: flex;
+  justify-content: right;
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+  
+
+}
+
 .wrapper__titles {
   display: flex;
   justify-content: center;
