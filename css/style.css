@@ -128,3 +128,27 @@ strong {
 .product p {
   align-self: flex-end;
 }
+
+
+.modale {
+  
+  display: none;
+  width: 350px;
+  height: 150px;
+  align-items:center;
+  padding: 10px; 
+
+  border-radius: 30px;
+  position: fixed;
+  top: 40%;
+  left: 33%;
+  z-index: 4;
+
+  background: rgb(241, 240, 240, 0.9);
+  box-shadow: 5px 10px 4px rgb(50, 50, 50, 0.5);
+
+  font-size: 20px;
+  text-align: center;
+
+  transition: all 0.35s ease;
+}

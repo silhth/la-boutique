@@ -15,9 +15,12 @@ function createProduct(parent, imgUrl, productTitle, textPrice,idProduct) {
       productList.find(
         (product) => parseInt(e.currentTarget.id) === product.id)
       ) 
+
+      showModale (productTitle);
+
     localStorage.getItem('cartItems') === "null" ?localStorage.setItem('cartItems', cartList.length):
         localStorage.setItem('cartItems', parseInt(localStorage.getItem('cartItems')) + 1)
-
+    
     setCartPtoductsNum ();
     }
   )
@@ -54,6 +57,13 @@ function renderProducts(listItems) {
 function setCartPtoductsNum () {
     cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`};
 
+
+
+function showModale (product) {
+  modale.textContent = `Il prodotto "${product}" è stato aggiuto al carello`
+  modale.style.display = "flex"
+    setTimeout(() => {modale.style.display = "none";}, 1500);
+}
 // COSTANTI
 
 const wrapperProducts = document.querySelector(".wrapper__products");
@@ -61,6 +71,9 @@ const cartList = [];
 let productList = [];
 const cartProductsNum= document.querySelector(".cartProductsNum")
 const clearCart = document.querySelector(".clearCart")
+
+// const modale = document.querySelector(".no__show")
+const modale = document.querySelector(".modale")
 
 // Async await
 
@@ -77,11 +90,13 @@ const getProductsList = async () => {
   const res = await fetch("https://fakestoreapi.com/products");
   const data = await res.json();
   productList = data;
-
+  
   return renderProducts(data);
+  
 };
 
 getProductsList();
+
 
 //CARRELLO E BTN PER SVUOTARE CARRELLO
 
