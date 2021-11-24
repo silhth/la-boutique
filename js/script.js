@@ -16,16 +16,26 @@ function createProduct(parent, imgUrl, productTitle, textPrice,idProduct) {
         (product) => parseInt(e.currentTarget.id) === product.id)
       ) 
 
+      cartTot = cartList.map((product)=>{
+        return product.price
+      }).reduce((a, b) => a + b)    
+
       showModale (productTitle);
 
     localStorage.getItem('cartItems') === "null" ?localStorage.setItem('cartItems', cartList.length):
         localStorage.setItem('cartItems', parseInt(localStorage.getItem('cartItems')) + 1)
     
+    
+    localStorage.setItem('cartTotal', cartTot)
     setCartPtoductsNum ();
     }
   )
   
 }
+
+
+
+
 
 function createImg(parent, imgUrl, productTitle) {
   const image = document.createElement("img");
@@ -55,7 +65,8 @@ function renderProducts(listItems) {
   }
 
 function setCartPtoductsNum () {
-    cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`};
+    cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')} / Totale: ${localStorage.getItem('cartTotal')}$`
+  };
 
 
 
@@ -72,9 +83,9 @@ let productList = [];
 const cartProductsNum= document.querySelector(".cartProductsNum")
 const clearCart = document.querySelector(".clearCart")
 
-// const modale = document.querySelector(".no__show")
 const modale = document.querySelector(".modale")
 
+let cartTot = []
 // Async await
 
 
@@ -101,6 +112,7 @@ getProductsList();
 //CARRELLO E BTN PER SVUOTARE CARRELLO
 
 localStorage.setItem('cartItems', localStorage.getItem('cartItems'));
+localStorage.setItem('cartTotal', localStorage.getItem('cartTotal'));
 if (localStorage.getItem('cartItems') === "null")
    {cartProductsNum.textContent =`Numero prodotti: ${cartList.length}`}
   else{setCartPtoductsNum ()};
@@ -108,5 +120,14 @@ if (localStorage.getItem('cartItems') === "null")
 clearCart.addEventListener('click', () =>{
     cartList.splice(0, cartList.length),
     localStorage.setItem('cartItems', 0)
+    localStorage.setItem('cartTotal', 0)
     setCartPtoductsNum ();
     });
+
+
+
+ // Nella eventualità di aggiungere una quantità per prodotto
+  // productsList = data.map((product) => {
+  //   product.quantity = 0;
+  //   return product;
+  // });
