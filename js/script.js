@@ -1,3 +1,6 @@
+// import { data } from "./products.js"; 
+// FUNZIONI
+
 function createProduct(parent, imgUrl, productTitle, textPrice,idProduct) {
   const product = document.createElement("div");
   product.className = "product";
@@ -12,9 +15,10 @@ function createProduct(parent, imgUrl, productTitle, textPrice,idProduct) {
       productList.find(
         (product) => parseInt(e.currentTarget.id) === product.id)
       ) 
+    localStorage.getItem('cartItems') === "null" ?localStorage.setItem('cartItems', cartList.length):
+        localStorage.setItem('cartItems', parseInt(localStorage.getItem('cartItems')) + 1)
+
     setCartPtoductsNum ();
-    localStorage.setItem('cartItems', cartList.length);
-    
     }
   )
   
@@ -40,38 +44,35 @@ function createText(parent, productTitle, textPrice) {
   parent.append(title, price);
 }
 
-function setCartPtoductsNum () {
-  cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`;
-  
-}
 
-// fetch("https://fakestoreapi.com/products") // <== importare la lista prodotti in modo remoto
-//   .then((response) => response.json())
-//   .then((data) => {
-//     products = data;
-//     renderProducts();
-//   });
+function renderProducts(listItems) {
+    listItems.map((product) => {
+      createProduct(wrapperProducts, product.image, product.title, product.price, product.id);
+    });
+  }
+
+function setCartPtoductsNum () {
+    cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`};
+
+// COSTANTI
 
 const wrapperProducts = document.querySelector(".wrapper__products");
 const cartList = [];
 let productList = [];
-const cartBanner = document.querySelector(".cartBanner")
 const cartProductsNum= document.querySelector(".cartProductsNum")
 const clearCart = document.querySelector(".clearCart")
 
-
-clearCart.addEventListener('click', () =>{
-    cartList.splice(0, cartList.length),
-    setCartPtoductsNum ();});
-
-
-function renderProducts(listItems) {
-  listItems.map((product) => {
-    createProduct(wrapperProducts, product.image, product.title, product.price, product.id);
-  });
-}
-
 // Async await
+
+
+//prendere  i data da file se remoto è lento 
+
+// const getProductsList = async () => {
+//   productList = await data;
+
+//   return renderProducts(data);
+// };
+
 const getProductsList = async () => {
   const res = await fetch("https://fakestoreapi.com/products");
   const data = await res.json();
@@ -82,7 +83,15 @@ const getProductsList = async () => {
 
 getProductsList();
 
+//CARRELLO E BTN PER SVUOTARE CARRELLO
 
+localStorage.setItem('cartItems', localStorage.getItem('cartItems'));
+if (localStorage.getItem('cartItems') === "null")
+   {cartProductsNum.textContent =`Numero prodotti: ${cartList.length}`}
+  else{setCartPtoductsNum ()};
 
-cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`
-
+clearCart.addEventListener('click', () =>{
+    cartList.splice(0, cartList.length),
+    localStorage.setItem('cartItems', 0)
+    setCartPtoductsNum ();
+    });
