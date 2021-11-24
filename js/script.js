@@ -11,9 +11,13 @@ function createProduct(parent, imgUrl, productTitle, textPrice,idProduct) {
     cartList.push(
       productList.find(
         (product) => parseInt(e.currentTarget.id) === product.id)
-      )
+      ) 
+    setCartPtoductsNum ();
+    localStorage.setItem('cartItems', cartList.length);
+    
     }
   )
+  
 }
 
 function createImg(parent, imgUrl, productTitle) {
@@ -36,6 +40,11 @@ function createText(parent, productTitle, textPrice) {
   parent.append(title, price);
 }
 
+function setCartPtoductsNum () {
+  cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`;
+  
+}
+
 // fetch("https://fakestoreapi.com/products") // <== importare la lista prodotti in modo remoto
 //   .then((response) => response.json())
 //   .then((data) => {
@@ -44,9 +53,17 @@ function createText(parent, productTitle, textPrice) {
 //   });
 
 const wrapperProducts = document.querySelector(".wrapper__products");
-const cartBtn = document.querySelector(".cartBtn")
 const cartList = [];
 let productList = [];
+const cartBanner = document.querySelector(".cartBanner")
+const cartProductsNum= document.querySelector(".cartProductsNum")
+const clearCart = document.querySelector(".clearCart")
+
+
+clearCart.addEventListener('click', () =>{
+    cartList.splice(0, cartList.length),
+    setCartPtoductsNum ();});
+
 
 function renderProducts(listItems) {
   listItems.map((product) => {
@@ -64,5 +81,8 @@ const getProductsList = async () => {
 };
 
 getProductsList();
-cartBtn.addEventListener("click", () =>
-console.log(cartList))
+
+
+
+cartProductsNum.textContent =`Numero prodotti: ${localStorage.getItem('cartItems')}`
+
