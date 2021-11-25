@@ -145,3 +145,19 @@ function setCartProductsNum() {
        image> 2 ? image= 0 : image +=1;
        heroImg.style.backgroundImage =`url( ${imagesHero[image]})`;
      },3000)
+
+
+const reviewList = ["⭐⭐⭐⭐⭐ Ottimo e-commerce, ben fornito e ottimo servizio clienti", "⭐⭐⭐⭐ Spedizioni rapide e prodotti di classe", "⭐⭐⭐⭐⭐ Adoro questo shop, trovo sempre prodotti nuovi e a ottimi pezzi"]
+
+const reviewsClients = document.querySelector(".reviews")
+
+reviewList.forEach((e) => {
+    const review = document.createElement("li");
+    review.setAttribute('class', 'review')
+    review.textContent = e;
+    reviewsClients.appendChild(review)
+  })
+
+
+
+

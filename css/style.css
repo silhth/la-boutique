@@ -170,3 +170,26 @@ strong {
 
   transition: all 1s ease-in-out;
 }
+
+.reviewsList {
+  text-align: center;
+}
+
+.reviewsList  {
+  text-align: center;
+}
+
+.review {
+  display: inline-block; 
+  width: 100vh;
+  height: 50px;
+  padding: 10px;
+  margin: 10px;
+  line-height:50px;
+
+  background: rgb(241, 240, 240, 0.9);
+  box-shadow: 3px 3px 3px rgb(50, 50, 50, 0.5);
+
+
+
+}
