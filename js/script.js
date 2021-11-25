@@ -1,4 +1,5 @@
 import { data } from "./products.js"; 
+import { reviewList } from "./reviews.js"; 
 
 function setCartProductsNum() {
     cartProductsNum.textContent = `Numero prodotti: ${cartList.length}/ Tot: ${cartTot} $`;
@@ -147,17 +148,33 @@ function setCartProductsNum() {
      },3000)
 
 
-const reviewList = ["⭐⭐⭐⭐⭐ Ottimo e-commerce, ben fornito e ottimo servizio clienti", "⭐⭐⭐⭐ Spedizioni rapide e prodotti di classe", "⭐⭐⭐⭐⭐ Adoro questo shop, trovo sempre prodotti nuovi e a ottimi pezzi"]
+// aggiunta recensionis
 
 const reviewsClients = document.querySelector(".reviews")
 
+
 reviewList.forEach((e) => {
     const review = document.createElement("li");
-    review.setAttribute('class', 'review')
-    review.textContent = e;
+    review.setAttribute('class', 'review'),
+    review.setAttribute('id', e.id),
+
+    liCont(e, review)
     reviewsClients.appendChild(review)
   })
 
 
+function liCont (e, parent) {
+  const stars = document.createElement("p");
+  stars.textContent = e.stars
+
+  const comment = document.createElement("p");
+  comment.textContent = e.text;
+
+  const client = document.createElement("p");
+  client.setAttribute("class", "client")
+  client.textContent = e.client;
+  parent.append(stars, comment, client)
+
+}
 
 

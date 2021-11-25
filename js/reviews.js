@@ -1,0 +1,12 @@
+export const reviewList = [{id: 1,
+stars: "⭐⭐⭐⭐⭐",
+text: "Ottimo e-commerce, ben fornito e ottimo servizio clienti",
+client: "Mario" },
+{id: 2,
+stars: "⭐⭐⭐⭐⭐",
+text: "Spedizioni rapide e prodotti di classe",
+client: "Gaia"},
+{id:3,
+stars: "⭐⭐⭐⭐⭐",
+text: "Adoro questo shop, trovo sempre prodotti nuovi e a ottimi pezzi",
+client: "Alice" }]

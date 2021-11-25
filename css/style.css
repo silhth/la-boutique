@@ -46,6 +46,7 @@ strong {
   background-size: cover;
 
   filter: contrast(1.4) sepia(0.2);
+  transition: all 1s ease-in-out;
 }
 
 .wrapper .__hero {
@@ -177,15 +178,19 @@ strong {
 
 .reviewsList  {
   text-align: center;
+ 
 }
 
 .review {
-  display: inline-block; 
+  
+  display: inline-block;
+    
+  ;
   width: 100vh;
-  height: 50px;
+  height: 75px;
   padding: 10px;
   margin: 10px;
-  line-height:50px;
+  
 
   background: rgb(241, 240, 240, 0.9);
   box-shadow: 3px 3px 3px rgb(50, 50, 50, 0.5);
@@ -193,3 +198,18 @@ strong {
 
 
 }
+
+.review p {
+  margin: 7px;
+  padding: 0;
+
+}
+.review .client {
+
+  text-align: right;
+  font-style: italic;
+  color: #626161;
+}
+
+
+
