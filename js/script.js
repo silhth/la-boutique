@@ -1,187 +1,39 @@
-import { data } from "./products.js";
-import { reviewList } from "./reviews.js";
-
-function setCartProductsNum() {
-  cartProductsNum.textContent = `Numero prodotti: ${cartList.length}/ Tot: ${cartTot} $`;
-}
-
-function createProduct(parent, imgUrl, productTitle, textPrice, idProduct) {
-  const product = document.createElement("div");
-  product.className = "product";
-  product.setAttribute("id", idProduct);
-
-  createImg(product, imgUrl, productTitle);
-  createText(product, productTitle, textPrice);
-  parent.appendChild(product);
-
-  product.addEventListener("click", (e) => {
-    const localStorageValue = localStorage.getItem("totCartitems");
-    if (localStorageValue) {
-      cartList = JSON.parse(localStorageValue);
-    }
-
-    renderProducts(cartList, cartProducts)
-
-    cartList.push(
-      productsList.find(
-        (product) => parseInt(e.currentTarget.id) === product.id
-      )
-    );
-   
-    // createCart(cartProducts, imgUrl, productTitle, textPrice)
-
-    cartTot = cartList.map((product) => {
-      return product.price
-    }).reduce((a, b) => + a + b)
-
-    
-
-    
-
-    setCartProductsNum();
-    showModale(productTitle);
-    // Nel caso in cui volessimo aggiungere una interazione col LocalStorage
-
-    localStorage.setItem("totCartitems", JSON.stringify(cartList));
-
-    // console.log("LOCAL STORAGE ==>", localStorageValue);
-  });
-}
-
-
-function createImg(parent, imgUrl, productTitle) {
-  const image = document.createElement("img");
-  image.src = imgUrl;
-  image.alt = productTitle;
-
-  parent.appendChild(image);
-}
-
-function createText(parent, productTitle, textPrice) {
-  const title = document.createElement("h4");
-  title.textContent = productTitle;
-
-  const price = document.createElement("strong");
-  price.textContent = `${textPrice} $`;
-
-  parent.append(title, price);
-}
-
-function renderProducts(listItems, container) {
-  listItems.map((product) => {
-    createProduct(
-      container,
-      product.image,
-      product.title,
-      product.price,
-      product.id
-    );
-  });
-}
-
-function showModale(product) {
-  modale.textContent = `Il prodotto "${product}" è stato aggiuto al carello`
-  modale.style.top = "40%"
-  setTimeout(() => { modale.style.top = "-250%"; }, 1500);
-}
-
-// Async await
-// const getProductsList = async () => {
-//   const res = await fetch("https://fakestoreapi.com/products");
-//   const data = await res.json();
-//   productsList = data;
-
-//   // Nella eventualità di aggiungere una quantità per prodotto
-//   // productsList = data.map((product) => {
-//   //   product.quantity = 0;
-//   //   return product;
-//   // });
-
-//   return renderProducts(data, wrapperProducts);
-// };
-let productsList = [];
-const getProductsList = async () => {
-  productsList = await data;
-
-  return renderProducts(data, wrapperProducts);
-};
-
-
-
-const wrapperProducts = document.querySelector(".wrapper__products");
+import { getProductsList } from "./fetchData.js"
+import { clearCart } from "./clearCart.js";
+import { slideImgHero } from "./slideImgHero.js";
+import { addReview } from "./addReviews.js";
 
 // Parte inerente alla logica del carrello
-let cartList = [];
 
-const localStorageTot = localStorage.getItem("totCartitems");
-const cartBtn = document.querySelector(".cartBtn");
+
+// const localStorageTot = localStorage.getItem("totCartitems");
+// const cartBtn = document.querySelector(".cartBtn");
 const cartProductsNum = document.querySelector(".cartProductsNum");
-const clearCartBtn = document.querySelector(".clearCart");
+// const clearCartBtn = document.querySelector(".clearCart");
 
-const modale = document.querySelector(".modale")
+// const modale = document.querySelector(".modale")
 
-let cartTot = []
-console.log(cartTot)
-const cartProducts = document.querySelector(".cart-items")
+
+
+
 
 // Flusso generale
 const parsedTotCardItemsLen =
   JSON.parse(localStorage.getItem("totCartitems"))?.length || 0;
 
 cartProductsNum.textContent = `Numero prodotti: ${parsedTotCardItemsLen || 0}`;
+
+//Cambia immagine nella hero ogni 3s 
+slideImgHero()
+
+// aggiunge i prodotti alla pagina 
 getProductsList();
 
-clearCartBtn.addEventListener("click", () => {
-  cartList.length = 0;
-  cartTot = 0;
-  localStorage.clear();
-  setCartProductsNum();
-});
+//svuota il carello e il localStorage 
+clearCart()
 
-// cambio immagine hero
+//aggiunge le recensioni 
+addReview()
 
-const imagesHero = ["https://images.unsplash.com/photo-1523199455310-87b16c0eed11?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-  "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-  "https://images.unsplash.com/photo-1560243563-062bfc001d68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-  "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80"]
-
-
-const heroImg = document.querySelector(".overlay");
-let image = 0
-
-setInterval(function () {
-  image > 2 ? image = 0 : image += 1;
-  heroImg.style.backgroundImage = `url( ${imagesHero[image]})`;
-}, 3000)
-
-
-// aggiunta recensionis
-
-const reviewsClients = document.querySelector(".reviews")
-
-
-reviewList.forEach((e) => {
-  const review = document.createElement("li");
-  review.setAttribute('class', 'review'),
-    review.setAttribute('id', e.id),
-
-    liCont(e, review)
-  reviewsClients.appendChild(review)
-})
-
-
-function liCont(e, parent) {
-  const stars = document.createElement("p");
-  stars.textContent = e.stars
-
-  const comment = document.createElement("p");
-  comment.textContent = e.text;
-
-  const client = document.createElement("p");
-  client.setAttribute("class", "client")
-  client.textContent = e.client;
-  parent.append(stars, comment, client)
-
-}
 
 
