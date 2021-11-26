@@ -20,8 +20,6 @@ function createProduct(parent, imgUrl, productTitle, textPrice, idProduct) {
       cartList = JSON.parse(localStorageValue);
     }
 
-    console.log(cartList)
-
     renderProducts(cartList, cartProducts)
 
     cartList.push(
@@ -123,7 +121,7 @@ const clearCartBtn = document.querySelector(".clearCart");
 const modale = document.querySelector(".modale")
 
 let cartTot = []
-
+console.log(cartTot)
 const cartProducts = document.querySelector(".cart-items")
 
 // Flusso generale
@@ -151,10 +149,10 @@ const imagesHero = ["https://images.unsplash.com/photo-1523199455310-87b16c0eed1
 const heroImg = document.querySelector(".overlay");
 let image = 0
 
-// setInterval(function () {
-//   image > 2 ? image = 0 : image += 1;
-//   heroImg.style.backgroundImage = `url( ${imagesHero[image]})`;
-// }, 3000)
+setInterval(function () {
+  image > 2 ? image = 0 : image += 1;
+  heroImg.style.backgroundImage = `url( ${imagesHero[image]})`;
+}, 3000)
 
 
 // aggiunta recensionis
