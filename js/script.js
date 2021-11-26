@@ -2,26 +2,20 @@ import { getProductsList } from "./fetchData.js"
 import { clearCart } from "./clearCart.js";
 import { slideImgHero } from "./slideImgHero.js";
 import { addReview } from "./addReviews.js";
+import { showHideCart } from "./ProdCart.js";
+
+
 
 // Parte inerente alla logica del carrello
 
 
-// const localStorageTot = localStorage.getItem("totCartitems");
-// const cartBtn = document.querySelector(".cartBtn");
-const cartProductsNum = document.querySelector(".cartProductsNum");
-// const clearCartBtn = document.querySelector(".clearCart");
-
-// const modale = document.querySelector(".modale")
 
 
-
-
-
-// Flusso generale
-const parsedTotCardItemsLen =
-  JSON.parse(localStorage.getItem("totCartitems"))?.length || 0;
-
-cartProductsNum.textContent = `Numero prodotti: ${parsedTotCardItemsLen || 0}`;
+// visualizza la scritta nel carello una volta ricaricata la pgina 
+// const cartProductsNum = document.querySelector(".cartProductsNum");
+// const parsedTotCardItemsLen =
+//   JSON.parse(localStorage.getItem("totCartitems"))?.length || 0;
+// cartProductsNum.textContent = `Numero prodotti: ${parsedTotCardItemsLen || 0}`;
 
 //Cambia immagine nella hero ogni 3s 
 slideImgHero()
@@ -35,5 +29,4 @@ clearCart()
 //aggiunge le recensioni 
 addReview()
 
-
-
+showHideCart()

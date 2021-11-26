@@ -33,7 +33,7 @@ let cartTot = [];
       }).reduce((a, b) => + a + b)
   
   
-      setCartProductsNum(cartList, cartTot);
+      // setCartProductsNum(cartList, cartTot);
       showModale(productTitle);
       // Nel caso in cui volessimo aggiungere una interazione col LocalStorage
   
