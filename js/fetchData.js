@@ -20,8 +20,8 @@ import { renderProducts } from "./render.js";
 
 let productsList = [];
 
-const getProductsList = async () => {
-  productsList = await data;
+const getProductsList = () => {
+  productsList = data;
 
   return renderProducts(data, wrapperProducts);
 };

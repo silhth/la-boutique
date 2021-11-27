@@ -12,4 +12,20 @@ import { createProduct } from "./createProduct.js"
     });
   }
 
-export{ renderProducts }
+  function renderProductsCart(items, container ) {
+    const title = document.createElement("h4");
+    title.textContent = items.title;
+
+    const price = document.createElement("strong");
+    price.textContent = `${items.price} $`;
+
+    container.append(title,
+      price);
+}
+
+
+
+
+
+
+export{ renderProducts, renderProductsCart}

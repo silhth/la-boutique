@@ -1,8 +1,12 @@
-import { productsList } from "./fetchData.js"
-import { showModale, setCartProductsNum } from "./ProdCart.js"
+import { productsList } from "./fetchData.js";
+import { showModale, setCartProductsNum } from "./ProdCart.js";
+import { renderProductsCart } from "./render.js";
+import { cartProducts } from "./ProdCart.js";
+
 
 let cartList = [];
 let cartTot = [];
+
 
  
  function createProduct(parent, imgUrl, productTitle, textPrice, idProduct) {
@@ -31,13 +35,21 @@ let cartTot = [];
       cartTot = cartList.map((product) => {
         return product.price
       }).reduce((a, b) => + a + b)
-  
-  
-      // setCartProductsNum(cartList, cartTot);
+
+        
+      setCartProductsNum(cartList, cartTot);
+      
       showModale(productTitle);
       // Nel caso in cui volessimo aggiungere una interazione col LocalStorage
   
       localStorage.setItem("totCartitems", JSON.stringify(cartList));
+
+      // let cartProduct =
+
+  
+      let prodInCard = cartList.length > 1 ? cartList.pop() : cartList[0]
+      
+      renderProductsCart(prodInCard, cartProducts);
   
       // console.log("LOCAL STORAGE ==>", localStorageValue);
     });

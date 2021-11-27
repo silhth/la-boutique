@@ -61,7 +61,6 @@ strong {
 
 .wrapper .__hero .intestazione {
   position: absolute;
-  /* padding: 30px; */
   top: 60%;
   right: 0;
   height: 150px;
@@ -82,81 +81,95 @@ strong {
   position: fixed;
   top: 0;
   z-index: 3;
+
 }
 .cartBanner {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-
-  background-color:none;
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0,0, 0, 0.6) 50%, rgb(0, 0, 0, 0) 100%);
- 
-  color: white;
   
+  display: flex;
+  padding: 7px 0;
+  justify-content: flex-end;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0,0, 0, 0.6) 50%, rgb(0, 0, 0, 0) 100%);
+
+  color: black;
+  
+}
+
+.show-cart{
+  width: 45px;
+  height: 45px;
+  margin: 10px 30px;
+
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  
+  z-index: 3;
+
+
+  background-color: rgba(0, 0, 0, 0);
+  filter: invert(100%);
+}
+
+.show-cart img{
+  
+  width: 35px;
+}
+
+
+
+
+.btns {
+  display: flex;
+  justify-content: space-between;
 
 }
-.cartBanner .cartProductsNum {
-  margin-right: 20px;
-}
 
-.cartBanner .clearCart {
+.cartBanner .clearCart, .hide-cart {
+  
+  margin: 10px;
   border: 0;
   background: transparent;
   cursor: pointer;
-  color: white;
+  color: black;
   transition: 0.35s;
+  font-size: 20px;
 }
 
-.cartBanner .clearCart:hover {
+.cartBanner .clearCart:hover, .hide-cart:hover{
   transform: scale(1.6);
 }
 
-.cartBanner .cartProductsNum::before {
-  content: "🛒";
-  margin-right: 10px;
-  font-size: 1.5rem;
+.clearCart img {
+  width: 25px;
 }
 
-.cart-items{
+.cartProductsNum {
+  margin: 0;
+  padding: 20px;
+  background-color: rgba(151, 151, 151, 0.3);
+}
+
+.cart{
   display: none;
   flex-direction: column;
-  background-color: antiquewhite;
-
-  overflow: scroll;
+  background-color: white;
 
   width: 300px;
-  height: 300px;
-  border: 1px solid;
+  height: 100vh;
+  
   position: absolute;
-  top:68px;
-  right: 10px;
+  top:0px;
+  right: 0px;
 
   z-index: 3;
 
 }
 
-.cart-items .product {
+.cart-items {
 
-  display: flex;
-  flex-direction: row; 
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  width: 300px;
+ margin-right: 20px;
+
 }
 
-.cart-items .product img {
-  margin: 3px ;
-  width: 30px;
-  height: auto;
-  
-}
-.cart-items .product h4, strong {
-  margin: 3px ;
-}
-.cart-items .product h4{
-  width: 200px;
-}
 
 .wrapper__titles {
   display: flex;
@@ -230,8 +243,27 @@ strong {
   font-size: 20px;
   text-align: center;
 
-  transition: all 1s ease-in-out;
+  transition: all .35s ease-in-out;
 }
+
+.filter-btn {
+  text-align: left;
+  margin-left:150px ;
+}
+
+.filter-btn button{
+  background: rgba(151, 151, 151, 0.3);
+  box-shadow: 3px 3px 3px rgb(50, 50, 50, 0.5);
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+  padding: 15px;
+  margin: 5px;
+}
+.filter-btn button:hover{
+  transform: scale(0.9);
+}
+
 
 .reviewsList {
   text-align: center;
