@@ -1,6 +1,7 @@
 import { cartList, cartTot } from "./createProduct.js";
 import { setCartProductsNum } from "./ProdCart.js";
 import { cartProducts, showCart} from "./ProdCart.js";
+import { removeAllChildNodes } from "./filterAZ&Price.js";
 
 const clearCartBtn = document.querySelector(".clearCart");
 
@@ -9,11 +10,8 @@ const clearCart = () => {clearCartBtn.addEventListener("click", () => {
   typeof cartTot == "number" ? cartTot : cartTot.length = 0 ;
   localStorage.clear();
   
-  while (cartProducts.firstChild) {
-    cartProducts.removeChild(cartProducts.firstChild)};
+  removeAllChildNodes (cartProducts);
   setCartProductsNum(cartList, 0);
-  cartProducts.style.display = "none"
-  showCart.style.display = "block"
   
 });
 
