@@ -49,14 +49,20 @@ const cartBanner = document.querySelector (".cartBanner")
 const showHideCart = () =>{
 showCart.addEventListener('click', () => {
   
-  cart.style.display = "flex";
+  cart.style.right = "0px";
   showCart.style.display = "none"
   cartBanner.style.height= "100vh"
+  cartBanner.style.background= "rgba(0, 0, 0, 0.6)";
 })
 
 hideCart.addEventListener('click', () => {
-    cart.style.display = "none"
-    showCart.style.display = "block"
-    cartBanner.style.height= "auto"})}
+    cart.style.right = "-300px";
+    showCart.style.display = "block";
+    cartBanner.style.height= "auto";
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+     cartBanner.style.background= "rgba(0, 0, 0, 0.6)";}
+    else {
+      cartBanner.style.background =  "linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0,0, 0, 0.6) 50%, rgb(0, 0, 0, 0) 100%)";}
+  })}
 
-export { showCart, cartProducts, modaleProdCart, showModale, setCartProductsNum, showHideCart}
+export { cartBanner, showCart, cartProducts, modaleProdCart, showModale, setCartProductsNum, showHideCart}

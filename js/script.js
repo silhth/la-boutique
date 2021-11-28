@@ -4,6 +4,7 @@ import { slideImgHero } from "./slideImgHero.js";
 import { addReview } from "./addReviews.js";
 import { showHideCart } from "./ProdCart.js";
 import {renderProductsAZ, renderProductsPrice } from "./filterAZ&Price.js"
+import { burgerMenu, menuBtn, menuClick} from "./BurgerMenu.js"
 
 
 
@@ -22,6 +23,8 @@ import {renderProductsAZ, renderProductsPrice } from "./filterAZ&Price.js"
 //Cambia immagine nella hero ogni 3s 
 slideImgHero()
 
+// aggiunge il menu
+burgerMenu()
 // aggiunge i prodotti alla pagina 
 getProductsList();
 
@@ -41,17 +44,16 @@ console.log(showCart)
 
 document.addEventListener ('scroll', () => {
     if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-    cartBanner.style.background= "rgba(151, 151, 151, 0.3)";
+    cartBanner.style.background= "rgba(0, 0, 0, 0.6)";
     cartBanner.style.boxShadow= "0px 2px 6px";
     cartBanner.style.padding = 0;
-    showCart.style.filter = "invert(0)";
+
 }
     else {
 
     cartBanner.style.padding = "7px 0";
     cartBanner.style.boxShadow= "0px 0px 0px";
     cartBanner.style.background =  "linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0,0, 0, 0.6) 50%, rgb(0, 0, 0, 0) 100%)";
-    showCart.style.filter = "invert(100%)"
     }
 
 }
@@ -60,5 +62,7 @@ document.addEventListener ('scroll', () => {
 
    renderProductsAZ();
    renderProductsPrice();
+
+   menuClick();
 
   
