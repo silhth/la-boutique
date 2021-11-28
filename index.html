@@ -12,31 +12,42 @@
 <body>
   <div class="wrapper">
     <div class="overlay"></div>
-    <div class="__hero">
+    <div class="__hero" id = "hero">
       <div class="intestazione">
         <h2>La moda contemporanea</h2>
         <p>Lo stile non è opinabile</p>
       </div>
     </div>
-    
+
     <div class="top-banner">
       <div class="cartBanner">
-        <button class="show-cart"><img src="https://img.icons8.com/material-outlined/50/000000/shopping-cart--v2.png" alt="carrello" /></button>
+        <div class="menu-btn">
+          <div class="menu-btn__burger"></div>         
+        </div>
+        <div class="menu">
+            <a  href="#hero">Home</a>
+            <a href="#wrapper__titles">Prodotti</a>
+            <a href="#reviewsList">Recensioni</a>
+            <a href="#footer">Contatti</a>
+          </div>
+        <button class="show-cart"><img src="https://img.icons8.com/material-outlined/50/000000/shopping-cart--v2.png"
+            alt="carrello" /></button>
         <div class="cart">
           <div class="btns">
-            <button class="clearCart"><img src="https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-bin-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png"/></button>
+            <button class="clearCart"><img
+                src="https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-bin-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png" /></button>
             <button class="hide-cart">X</button>
           </div>
-          
+
           <p class="cartProductsNum">Carrello vuoto</p>
           <div class="cart-items"></div>
         </div>
       </div>
     </div>
   </div>
-  
 
-  <div class="wrapper__titles">
+
+  <div class="wrapper__titles" id = "wrapper__titles">
     <h2>La boutique</h2>
     <h4>Trend e design</h4>
   </div>
@@ -47,9 +58,12 @@
   <div class="modale"></div>
   <div class="wrapper__products"></div>
   </div>
-  <div class="reviewsList">
+  <div class="reviewsList" id="reviewsList" >
     <h2 class="review-clients">Recensioni</h2>
     <ul class="reviews"></ul>
+  </div>
+  <div class="footer" class = "footer">
+    <p>progetto Bootcamp Edgemony - Silvia Lechthaler</p>
   </div>
   <script src="./js/script.js" type="module"></script>
 </body>
